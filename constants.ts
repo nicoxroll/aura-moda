@@ -1,12 +1,12 @@
 import { NavItem, CollectionItem, ServiceStep, Testimonial, TimelineItem, RunwayItem } from './types';
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: 'Inicio', href: '#hero' },
-  { label: 'Pasarela', href: '#runway' },
-  { label: 'Campaña', href: '#campaign' },
-  { label: 'Colección', href: '#collection' },
-  { label: 'Legado', href: '#timeline' },
-  { label: 'Contacto', href: '#contact' },
+  { label: 'Inicio', href: '/#hero' },
+  { label: 'Pasarela', href: '/#runway' },
+  { label: 'Campaña', href: '/#campaign' },
+  { label: 'Colección', href: '/collection' },
+  { label: 'Legado', href: '/#timeline' },
+  { label: 'Contacto', href: '/#contact' },
 ];
 
 export const COLLECTION: CollectionItem[] = [

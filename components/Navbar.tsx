@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { NAV_ITEMS } from '../constants';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,6 +17,33 @@ const Navbar: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleNavigation = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    setIsMobileOpen(false);
+
+    if (href.startsWith('/#')) {
+      const id = href.replace('/#', '');
+      if (location.pathname === '/') {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        navigate('/');
+        // Wait for navigation to complete
+        setTimeout(() => {
+          const element = document.getElementById(id);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      }
+    } else {
+      navigate(href);
+      window.scrollTo(0, 0);
+    }
+  };
 
   return (
     <>
@@ -29,7 +59,11 @@ const Navbar: React.FC = () => {
       >
         <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
           {/* Logo */}
-          <a href="#" className="font-serif text-3xl md:text-4xl tracking-widest font-semibold z-50">
+          <a 
+            href="/" 
+            onClick={(e) => handleNavigation(e, '/#hero')}
+            className="font-serif text-3xl md:text-4xl tracking-widest font-semibold z-50"
+          >
             AURA
           </a>
 
@@ -39,6 +73,7 @@ const Navbar: React.FC = () => {
               <a
                 key={item.label}
                 href={item.href}
+                onClick={(e) => handleNavigation(e, item.href)}
                 className={`font-sans text-sm tracking-widest transition-colors duration-300 relative group ${
                     isScrolled ? 'hover:text-aura-gold' : 'hover:text-white/70'
                 }`}
@@ -76,7 +111,7 @@ const Navbar: React.FC = () => {
                 <a
                   key={item.label}
                   href={item.href}
-                  onClick={() => setIsMobileOpen(false)}
+                  onClick={(e) => handleNavigation(e, item.href)}
                   className="font-serif text-3xl text-aura-black hover:text-aura-gold transition-colors"
                 >
                   {item.label}
