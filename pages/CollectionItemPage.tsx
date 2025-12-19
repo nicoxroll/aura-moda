@@ -41,17 +41,39 @@ const CollectionItemPage: React.FC = () => {
   const openLightbox = (index: number) => setLightboxIndex(index);
   const closeLightbox = () => setLightboxIndex(null);
 
-  const nextImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (lightboxIndex === null) return;
-    setLightboxIndex((lightboxIndex + 1) % galleryImages.length);
+  const nextImage = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setLightboxIndex((prev) => (prev !== null ? (prev + 1) % galleryImages.length : null));
   };
 
-  const prevImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (lightboxIndex === null) return;
-    setLightboxIndex((lightboxIndex - 1 + galleryImages.length) % galleryImages.length);
+  const prevImage = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setLightboxIndex((prev) => (prev !== null ? (prev - 1 + galleryImages.length) % galleryImages.length : null));
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (lightboxIndex === null) return;
+      
+      switch (e.key) {
+        case 'Escape':
+          closeLightbox();
+          break;
+        case 'ArrowRight':
+          setLightboxIndex((prev) => (prev !== null ? (prev + 1) % galleryImages.length : null));
+          break;
+        case 'ArrowLeft':
+          setLightboxIndex((prev) => (prev !== null ? (prev - 1 + galleryImages.length) % galleryImages.length : null));
+          break;
+      }
+    };
+
+    if (lightboxIndex !== null) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxIndex, galleryImages.length]);
 
   return (
     <div className="bg-white min-h-screen">
