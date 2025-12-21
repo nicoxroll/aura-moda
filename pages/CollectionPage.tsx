@@ -56,39 +56,43 @@ const CollectionPage: React.FC = () => {
             <h2 className="font-serif text-4xl md:text-5xl mt-3 text-aura-black">Explora los Detalles</h2>
         </div>
         
-        <div className="w-full h-[70vh] flex flex-col md:flex-row overflow-hidden rounded-lg shadow-2xl">
-            {COLLECTION.map((item) => (
-            <motion.div
-                key={item.id}
-                layout
-                onClick={() => handleItemClick(item.id)}
-                className="relative flex-1 h-full min-h-[200px] group transition-[flex] duration-700 ease-in-out hover:flex-[3] cursor-pointer border-r border-white/20 last:border-r-0"
-            >
-                <img 
-                src={item.imageUrl} 
-                alt={item.title} 
-                className="absolute inset-0 w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700"
-                />
-                <div className="absolute inset-0 bg-aura-black/40 group-hover:bg-aura-black/10 transition-colors duration-500" />
-                
-                {/* Vertical Text (Default) */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-                    <h3 className="font-serif text-2xl md:text-4xl text-white opacity-80 rotate-0 md:-rotate-90 whitespace-nowrap tracking-widest">
-                        {item.title}
-                    </h3>
-                </div>
+        <div className="flex flex-col rounded-lg shadow-2xl overflow-hidden">
+            {[COLLECTION.slice(0, 4), COLLECTION.slice(4)].map((rowItems, rowIndex) => (
+            <div key={rowIndex} className="w-full h-[50vh] flex flex-col md:flex-row overflow-hidden border-b border-white/20 last:border-b-0">
+                {rowItems.map((item) => (
+                <motion.div
+                    key={item.id}
+                    layout
+                    onClick={() => handleItemClick(item.id)}
+                    className="relative flex-1 h-full min-h-[200px] group transition-[flex] duration-700 ease-in-out hover:flex-[3] cursor-pointer border-r border-white/20 last:border-r-0"
+                >
+                    <img 
+                    src={item.imageUrl} 
+                    alt={item.title} 
+                    className="absolute inset-0 w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700"
+                    />
+                    <div className="absolute inset-0 bg-aura-black/40 group-hover:bg-aura-black/10 transition-colors duration-500" />
+                    
+                    {/* Vertical Text (Default) */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                        <h3 className="font-serif text-2xl md:text-4xl text-white opacity-80 rotate-0 md:-rotate-90 whitespace-nowrap tracking-widest">
+                            {item.title}
+                        </h3>
+                    </div>
 
-                {/* Expanded Info (Hover) */}
-                <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-10 group-hover:translate-y-0">
-                <span className="inline-block px-3 py-1 border border-white/50 text-white text-[10px] uppercase tracking-[0.2em] mb-4">
-                    {item.category}
-                </span>
-                <h2 className="font-serif text-4xl md:text-5xl text-white mb-2">{item.title}</h2>
-                <p className="font-sans text-white/80 text-sm font-light max-w-md mb-4">
-                    Click para ver en detalle
-                </p>
-                </div>
-            </motion.div>
+                    {/* Expanded Info (Hover) */}
+                    <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-10 group-hover:translate-y-0">
+                    <span className="inline-block px-3 py-1 border border-white/50 text-white text-[10px] uppercase tracking-[0.2em] mb-4">
+                        {item.category}
+                    </span>
+                    <h2 className="font-serif text-4xl md:text-5xl text-white mb-2">{item.title}</h2>
+                    <p className="font-sans text-white/80 text-sm font-light max-w-md mb-4">
+                        Click para ver en detalle
+                    </p>
+                    </div>
+                </motion.div>
+                ))}
+            </div>
             ))}
         </div>
       </section>

@@ -34,6 +34,24 @@ export const COLLECTION: CollectionItem[] = [
     category: "Nuptial",
     imageUrl: "https://images.pexels.com/photos/2235071/pexels-photo-2235071.jpeg?auto=compress&cs=tinysrgb&w=800",
   },
+  {
+    id: 5,
+    title: "Esencia Minimalista",
+    category: "Prêt-à-porter",
+    imageUrl: "https://images.pexels.com/photos/6069816/pexels-photo-6069816.jpeg?auto=compress&cs=tinysrgb&w=800",
+  },
+  {
+    id: 6,
+    title: "Contrastes",
+    category: "Editorial",
+    imageUrl: "https://images.pexels.com/photos/19248045/pexels-photo-19248045.jpeg?auto=compress&cs=tinysrgb&w=800",
+  },
+  {
+    id: 7,
+    title: "Invierno Cálido",
+    category: "Abrigos",
+    imageUrl: "https://images.pexels.com/photos/19401642/pexels-photo-19401642.jpeg?auto=compress&cs=tinysrgb&w=800",
+  },
 ];
 
 export const PROCESS_STEPS: ServiceStep[] = [

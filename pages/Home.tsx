@@ -7,6 +7,7 @@ import Runway from '../components/Runway';
 import Timeline from '../components/Timeline';
 import Campaign from '../components/Campaign';
 import Editorial from '../components/Editorial';
+import Collection from '../components/Collection';
 
 const Home: React.FC = () => {
   return (
@@ -16,7 +17,7 @@ const Home: React.FC = () => {
       <Campaign />
       <About />
       <Editorial />
-      {/* Collection section removed as it has its own page now */}
+      <Collection />
       <Process />
       <Timeline />
       <Contact />

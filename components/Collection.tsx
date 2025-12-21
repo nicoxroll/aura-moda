@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { COLLECTION } from '../constants';
 
 const Collection: React.FC = () => {
@@ -16,6 +17,10 @@ const Collection: React.FC = () => {
             <span className="font-sans text-xs tracking-[0.2em] text-stone-500 uppercase">Selección Exclusiva</span>
             <h2 className="font-serif text-4xl md:text-5xl mt-3 text-aura-black">Colección Etérea</h2>
           </motion.div>
+          
+          <Link to="/collection" className="hidden md:inline-block font-sans text-sm uppercase tracking-widest hover:text-stone-600 transition-colors pb-2 border-b border-transparent hover:border-stone-600">
+            Ver completa
+          </Link>
         </div>
       </div>
 
@@ -33,9 +38,9 @@ const FullView = () => (
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
-    className="w-full h-[70vh] flex flex-col md:flex-row overflow-hidden"
+    className="w-full h-[70vh] flex flex-col md:flex-row overflow-hidden rounded-lg shadow-2xl"
   >
-    {COLLECTION.map((item) => (
+    {COLLECTION.slice(0, 4).map((item) => (
       <motion.div
         key={item.id}
         layout
