@@ -1,6 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Montserrat", sans-serif;
+
+  --color-aura-black: #1a1a1a;
+  --color-aura-gold: #d4af37;
+  --color-aura-cream: #f9f8f4;
+  --color-aura-stone: #e6e2dd;
+}
 
 body {
   background-color: #f9f8f4;
