@@ -10,10 +10,6 @@ const CollectionItemPage: React.FC = () => {
   const item = COLLECTION.find(i => i.id === Number(id));
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   if (!item) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-aura-cream">
