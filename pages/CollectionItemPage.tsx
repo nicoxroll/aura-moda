@@ -33,8 +33,8 @@ const CollectionItemPage: React.FC = () => {
   // Define gallery images based on the item (using placeholders + item image for demo)
   const galleryImages = [
     item.imageUrl,
-    "https://images.pexels.com/photos/2916814/pexels-photo-2916814.jpeg?auto=compress&cs=tinysrgb&w=800",
-    "https://images.pexels.com/photos/1536619/pexels-photo-1536619.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "/images/2916814.jpg",
+    "/images/1536619.jpg",
     item.imageUrl // Repeating for the 4th slot
   ];
 
