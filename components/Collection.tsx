@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { COLLECTION } from '../constants';
 
 const Collection: React.FC = () => {
@@ -33,7 +33,10 @@ const Collection: React.FC = () => {
 
 // --- Sub-components for Views ---
 
-const FullView = () => (
+const FullView = () => {
+  const navigate = useNavigate();
+
+  return (
   <motion.div
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
@@ -44,6 +47,7 @@ const FullView = () => (
       <motion.div
         key={item.id}
         layout
+        onClick={() => navigate(`/collection/${item.id}`)}
         className="relative flex-1 h-full min-h-[200px] group transition-[flex] duration-700 ease-in-out hover:flex-[3] cursor-pointer border-r border-white/20 last:border-r-0"
       >
         <img 
@@ -73,6 +77,7 @@ const FullView = () => (
       </motion.div>
     ))}
   </motion.div>
-);
+  );
+};
 
 export default Collection;
